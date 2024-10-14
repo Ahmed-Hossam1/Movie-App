@@ -64,7 +64,7 @@ const MovieDetails = () => {
   useEffect(() => {
     fetchMovieDetails();
     GetVideo(movieID);
-  }, [movieID]);
+  },);
 
   return (
     <section id="moviedetails">

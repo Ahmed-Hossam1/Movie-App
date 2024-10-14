@@ -61,7 +61,7 @@ const Api_Key = process.env.REACT_APP_API_KEY
 
   useEffect(() => {
     Configration();
-  }, []);
+  },);
 
   return (
     <ProviderMovieContext.Provider

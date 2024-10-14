@@ -39,9 +39,10 @@ const MoviesPage = () => {
   }, []);
 
   useEffect(() => {
-    GetMovies();
+    GetMovies()
   }, [page]);
 
+ 
   return (
     <section className="py-28">
       <h2 className="text-white text-3xl container capitalize font-bold tracking-wide my-4">

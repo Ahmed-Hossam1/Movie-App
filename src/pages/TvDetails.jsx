@@ -65,7 +65,7 @@ const TvDetails = () => {
   useEffect(() => {
     fetchTvSeries();
     Get_Tv_Video(TvID);
-  }, [TvID]);
+  },);
 
   return (
     <section id="moviedetails">

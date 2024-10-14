@@ -23,7 +23,7 @@ const PersonDetails = () => {
 
   useEffect(() => {
     GetPerson(personID);
-  }, [personID]);
+  }, );
 
   return (
     <section id="persondetails">
