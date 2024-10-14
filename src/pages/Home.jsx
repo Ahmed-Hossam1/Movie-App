@@ -10,7 +10,7 @@ import { ProviderMovieContext } from "../context/MovieContext";
 const Home = () => {
   const { isloading , Setloading} = useContext(ProviderMovieContext)
   useEffect(()=> {
-    setTimeout(Setloading, 1000 )
+    setTimeout(Setloading, 3000 )
   })
   return (
     <>
