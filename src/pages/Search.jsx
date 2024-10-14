@@ -1,20 +1,33 @@
-import { useContext, useEffect, useState } from "react";
-import { ProviderMovieContext } from "../context/MovieContext";
+import { useEffect, useState } from "react";
 import MoviesCard from "../components/MoviesCard";
-const Search = () => {
-  const { SearchState } = useContext(ProviderMovieContext);
-  const [searchinput, SetSearch] = useState("");
+import axios from "axios";
 
-  const { GetSearch } = useContext(ProviderMovieContext);
+const Search = () => {
+  const [searchinput, SetSearchinput] = useState("");
+  const [SearchState, SetSearch] = useState([]);
+
   function handleSearch(e) {
-    SetSearch(e.target.value);
+    SetSearchinput(e.target.value);
   }
 
   useEffect(() => {
-    const debounceSearch = setTimeout(() => {
-      if (searchinput) {
-        GetSearch(searchinput);
+    const Api_Key = process.env.REACT_APP_API_KEY;
+
+    const GetSearch = async (query) => {
+      try {
+        const SearchUrl = "https://api.themoviedb.org/3/search/movie";
+        const response = await axios.get(
+          `${SearchUrl}?api_key=${Api_Key}&query=${query}`
+        );
+        const data = response.data.results;
+        SetSearch(data);
+      } catch (error) {
+        console.log("Error is:", error.message);
       }
+    };
+
+    const debounceSearch = setTimeout(() => {
+      GetSearch(searchinput);
     }, 1100);
 
     return () => clearTimeout(debounceSearch);
@@ -29,6 +42,7 @@ const Search = () => {
             className="grow"
             placeholder="Search..."
             onChange={handleSearch}
+            value={searchinput} // Ensure input value reflects state
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,14 +57,14 @@ const Search = () => {
             />
           </svg>
         </label>
-        <h2 className="name text-white/80 capitalize  text-4xl tracking-wider my-5">
-          search results..
+        <h2 className="name text-white/80 capitalize text-4xl tracking-wider my-5">
+          Search results..
         </h2>
         {SearchState.length > 0 ? (
           SearchState.map((movie) => <MoviesCard data={movie} key={movie.id} />)
         ) : (
-          <div className="text-2xl  capitalize text-red-700">
-            no search results <i className="fa-solid fa-face-frown"></i>
+          <div className="text-2xl capitalize text-red-700">
+            No search results <i className="fa-solid fa-face-frown"></i>
           </div>
         )}
       </div>

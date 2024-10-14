@@ -33,39 +33,40 @@ const TvDetails = () => {
 
   const [Seasons, SetSeasons] = useState(false);
 
-  const fetchTvSeries = async () => {
-    const Api_key = process.env.REACT_APP_API_KEY;
-    const Urls = [
-      `https://api.themoviedb.org/3/tv/${TvID}?api_key=${Api_key}`,
-      `https://api.themoviedb.org/3/tv/${TvID}/reviews?api_key=${Api_key}`,
-      `https://api.themoviedb.org/3/tv/${TvID}/credits?api_key=${Api_key}`,
-      `https://api.themoviedb.org/3/tv/${TvID}/similar?api_key=${Api_key}`,
-      `https://api.themoviedb.org/3/tv/${TvID}/recommendations?api_key=${Api_key}`,
-    ];
-    Setloading(true);
-    try {
-      const response = await Promise.all(Urls.map((Url) => axios.get(Url)));
-      SetMovie(response[0].data);
-      SetReviews(response[1].data.results);
-      SetCast(response[2].data.cast);
-      SetSimilar(response[3].data.results);
-      SetRecommendations(response[4].data.results);
-    } catch (error) {
-      console.error("Error fetching movie details:", error.message);
-    } finally {
-      Setloading(false);
-    }
-  };
-
   // Reviews Appear Number
   const Lastindex = ReviewsCount;
   const Firstindex = Lastindex - Reviews;
   const ReviewsNumber = Reviews.slice(Firstindex, Lastindex);
 
   useEffect(() => {
+    const fetchTvSeries = async () => {
+      const Api_key = process.env.REACT_APP_API_KEY;
+      const Urls = [
+        `https://api.themoviedb.org/3/tv/${TvID}?api_key=${Api_key}`,
+        `https://api.themoviedb.org/3/tv/${TvID}/reviews?api_key=${Api_key}`,
+        `https://api.themoviedb.org/3/tv/${TvID}/credits?api_key=${Api_key}`,
+        `https://api.themoviedb.org/3/tv/${TvID}/similar?api_key=${Api_key}`,
+        `https://api.themoviedb.org/3/tv/${TvID}/recommendations?api_key=${Api_key}`,
+      ];
+      Setloading(true);
+      try {
+        const response = await Promise.all(Urls.map((Url) => axios.get(Url)));
+        SetMovie(response[0].data);
+        SetReviews(response[1].data.results);
+        SetCast(response[2].data.cast);
+        SetSimilar(response[3].data.results);
+        SetRecommendations(response[4].data.results);
+      } catch (error) {
+        console.error("Error fetching movie details:", error.message);
+      } finally {
+        Setloading(false);
+      }
+    };
+
     fetchTvSeries();
-    Get_Tv_Video(TvID);
-  },);
+  }, [TvID, Setloading]);
+
+  Get_Tv_Video(TvID);
 
   return (
     <section id="moviedetails">

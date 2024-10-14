@@ -5,7 +5,6 @@ export const ProviderMovieContext = createContext();
 
 const MovieContext = ({ children }) => {
   const [ImgConfig, SetImgConfig] = useState("");
-  const [SearchState, SetSearch] = useState([]);
   const [Video, SetVedio] = useState([]);
   const [iSVideoplayed, SetVideoplayed] = useState(false);
   const [iS_Tv_Videoplayed, Set_Tv_Videoplayed] = useState(false);
@@ -46,18 +45,7 @@ const Api_Key = process.env.REACT_APP_API_KEY
     }
   };
 
-  const GetSearch = async (query) => {
-    try {
-      const SearchUrl = "https://api.themoviedb.org/3/search/movie";
-      const response = await axios.get(
-        `${SearchUrl}?api_key=${Api_Key}&query=${query}`
-      );
-      const data = await response.data.results;
-      SetSearch(data);
-    } catch (error) {
-      console.log("error is :", error.message);
-    }
-  };
+  
 
   useEffect(() => {
     Configration();
@@ -77,8 +65,6 @@ const Api_Key = process.env.REACT_APP_API_KEY
         Tv_Video,
         iS_Tv_Videoplayed,
         Set_Tv_Videoplayed,
-        SearchState,
-        GetSearch,
       }}
     >
       {children}

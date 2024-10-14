@@ -7,23 +7,23 @@ const PersonDetails = () => {
   const { ImgConfig, isloading, Setloading } = useContext(ProviderMovieContext);
   const { personID } = useParams();
   const [person, setPerson] = useState({});
-  const GetPerson = async (personID) => {
-    const Url = `https://api.themoviedb.org/3/person/${personID}`;
-    const Api_Key = process.env.REACT_APP_API_KEY;
-    try {
-      const response = await axios.get(`${Url}?api_key=${Api_Key}`);
-      const data = await response.data;
-      setPerson(data);
-    } catch (error) {
-      console.log("error is : ", error.message);
-    } finally {
-      Setloading(false);
-    }
-  };
 
   useEffect(() => {
+    const GetPerson = async (personID) => {
+      const Url = `https://api.themoviedb.org/3/person/${personID}`;
+      const Api_Key = process.env.REACT_APP_API_KEY;
+      try {
+        const response = await axios.get(`${Url}?api_key=${Api_Key}`);
+        const data = await response.data;
+        setPerson(data);
+      } catch (error) {
+        console.log("error is : ", error.message);
+      } finally {
+        Setloading(false);
+      }
+    };
     GetPerson(personID);
-  }, );
+  }, [personID, Setloading]);
 
   return (
     <section id="persondetails">
