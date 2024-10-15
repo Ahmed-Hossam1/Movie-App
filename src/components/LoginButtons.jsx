@@ -10,7 +10,7 @@ const LoginButtons = () => {
   }
 
   return (
-    <div>
+    <div className="text-sm w-full">
       {localStorage.getItem("token") ? (
         <Link>
           <button

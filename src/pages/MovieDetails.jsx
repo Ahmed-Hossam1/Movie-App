@@ -56,7 +56,8 @@ const MovieDetails = () => {
     };
     fetchMovieDetails();
   }, [movieID, Setloading]);
-
+  
+  GetVideo(movieID);
   return (
     <section id="moviedetails">
       {isloading ? (

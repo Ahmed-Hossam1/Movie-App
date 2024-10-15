@@ -15,12 +15,12 @@ const MoviesCard = ({ data }) => {
           />
         </div>
         <div className="content backdrop-blur bg-black/60 absolute bottom-0 w-full p-2">
-          <h2 className="text-white/80 capitalize font-bold tracking-wide mb-1">
+          <h2 className="text-white/80 text-sm md:text-lg capitalize font-bold tracking-wide mb-1">
             {data.title}
           </h2>
           <span className="c-flex flex-wrap text-white/50">
             <span>{data.release_date}</span>
-            <span className="bg-black/70 px-4 py-1 rounded-full">
+            <span className="bg-black/70 px-2 md:px-4 py-1 rounded-full">
               {Number(data.vote_average).toFixed(1)}
               <span className="ml-2">
                 <i className="fa-solid fa-star text-yellow-400"></i>
