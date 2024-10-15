@@ -11,9 +11,8 @@ const PersonDetails = () => {
   useEffect(() => {
     const GetPerson = async (personID) => {
       const Url = `https://api.themoviedb.org/3/person/${personID}`;
-      const Api_Key = process.env.REACT_APP_API_KEY;
       try {
-        const response = await axios.get(`${Url}?api_key=${Api_Key}`);
+        const response = await axios.get(`${Url}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`);
         const data = await response.data;
         setPerson(data);
       } catch (error) {

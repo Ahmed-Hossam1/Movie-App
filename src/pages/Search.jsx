@@ -11,13 +11,12 @@ const Search = () => {
   }
 
   useEffect(() => {
-    const Api_Key = process.env.REACT_APP_API_KEY;
 
     const GetSearch = async (query) => {
       try {
         const SearchUrl = "https://api.themoviedb.org/3/search/movie";
         const response = await axios.get(
-          `${SearchUrl}?api_key=${Api_Key}&query=${query}`
+          `${SearchUrl}?api_key="49b7cb7e387bfe1c056d28f7e499039f"&query=${query}`
         );
         const data = response.data.results;
         SetSearch(data);

@@ -9,13 +9,12 @@ const Trending = () => {
   const [TrendingMovie, SetTrendingMovie] = useState([]);
 
   const GetTrendingMovie = async () => {
-    const Api_Key = process.env.REACT_APP_API_KEY
 
     try {
       const TrendingMovieUrl =
         "https://api.themoviedb.org/3/trending/movie/day";
       const response = await axios.get(
-        `${TrendingMovieUrl}?api_key=${Api_Key}`
+        `${TrendingMovieUrl}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`
       );
       const data = await response.data.results;
       SetTrendingMovie(data);

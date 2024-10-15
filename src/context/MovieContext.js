@@ -10,12 +10,11 @@ const MovieContext = ({ children }) => {
   const [iS_Tv_Videoplayed, Set_Tv_Videoplayed] = useState(false);
   const [Tv_Video, Set_Tv_Video] = useState([]);
   const [isloading, Setloading] = useState(true);
-const Api_Key = process.env.REACT_APP_API_KEY
   const Configration = async () => {
     const MovieUrl = "https://api.themoviedb.org/3/configuration";
 
     try {
-      const response = await axios.get(`${MovieUrl}?api_key=${Api_Key}`);
+      const response = await axios.get(`${MovieUrl}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`);
       const data = await response.data.images;
       const Img_Url = data.secure_base_url + "original";
       SetImgConfig(Img_Url);
@@ -27,7 +26,7 @@ const Api_Key = process.env.REACT_APP_API_KEY
   const GetVideo = async (movieID) => {
     const Url = `https://api.themoviedb.org/3/movie/${movieID}/videos`;
     try {
-      const response = await axios.get(`${Url}?api_key=${Api_Key}`);
+      const response = await axios.get(`${Url}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`);
       const data = await response.data.results;
       SetVedio(data);
     } catch (error) {
@@ -37,7 +36,7 @@ const Api_Key = process.env.REACT_APP_API_KEY
   const Get_Tv_Video = async (TvId) => {
     const Url = `https://api.themoviedb.org/3/tv/${TvId}/videos`;
     try {
-      const response = await axios.get(`${Url}?api_key=${Api_Key}`);
+      const response = await axios.get(`${Url}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`);
       const data = await response.data.results;
       Set_Tv_Video(data);
     } catch (error) {
