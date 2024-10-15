@@ -48,7 +48,7 @@ const MovieContext = ({ children }) => {
 
   useEffect(() => {
     Configration();
-  },);
+  },[]);
 
   return (
     <ProviderMovieContext.Provider

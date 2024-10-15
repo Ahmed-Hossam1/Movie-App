@@ -167,12 +167,8 @@ const SignUpPage = () => {
               />
             </div>
 
-            <input
-              type="file"
-              className={`outline-none flex-1  border-transparent border text-white 
-                bg-transparent text-sm py-2`}
-              onChange={handleFile}
-            />
+            <input type="file" className="file-input file-input-bordered file-input-sm w-full max-w-xs"  onChange={handleFile}/>
+            {/* md */}
             <div className="c-flex gap-2 text-white text-sm  capitalize">
               <div className="flex gap-2">
                 <input type="checkbox" />

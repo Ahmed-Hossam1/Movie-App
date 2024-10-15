@@ -25,9 +25,10 @@ const MovieDetails = () => {
   const [Reviews, SetReviews] = useState([]);
   const [ReviewsCount, SetReviewsCount] = useState(3);
 
+
   // Reviews Appear Number
   const Lastindex = ReviewsCount;
-  const Firstindex = Lastindex - Reviews;
+  const Firstindex = Lastindex - ReviewsCount;
   const ReviewsNumber = Reviews.slice(Firstindex, Lastindex);
 
   useEffect(() => {
@@ -57,7 +58,11 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [movieID, Setloading]);
 
-  GetVideo(movieID);
+
+  useEffect(() => {
+    GetVideo(movieID);
+  }, [movieID]);
+
   return (
     <section id="moviedetails">
       {isloading ? (
@@ -78,12 +83,14 @@ const MovieDetails = () => {
           </div>
 
           {/* movie details */}
-          <div className="container relative  md:flex justify-between gap-5 text-white">
+          <div className="container  md:flex justify-between gap-5 text-white">
             <div className="img -mt-28">
               <img
-                src={`${ImgConfig}${Movie.poster_path? Movie.poster_path : Movie.backdrop_path}`}
+                src={`${ImgConfig}${
+                  Movie.poster_path ? Movie.poster_path : Movie.backdrop_path
+                }`}
                 alt={Movie.title}
-                className="  bottom-1/4  md:max-w-[400px] h-[550px] object-cover rounded-xl "
+                className="relative z-10 md:max-w-[400px] h-[550px] object-cover rounded-xl "
               />
               <button
                 className="block bg-gradient-to-r from-cyan-600 to-cyan-950 my-4 p-2 w-full md:w-[400px] rounded-md font-bold capitalize"
@@ -158,10 +165,11 @@ const MovieDetails = () => {
           </div>
 
           {/* reviews */}
-          <div className="reviews container  bg-gray-950  px-2 py-4">
+          <div className="reviews container relative  bg-gray-950  px-2 py-4">
             <h1 className="font-bold text-white/70 text-3xl mb-4 capitalize">
               reviews
             </h1>
+
             {Reviews.length > 0 ? (
               ReviewsNumber.map((Review) => (
                 <div
@@ -169,15 +177,26 @@ const MovieDetails = () => {
                   key={Review.id}
                 >
                   <div className="imgprofile flex items-center gap-3 my-4">
-                    <img
-                      src={ImgConfig + Review.author_details.avatar_path}
-                      alt={Review.author_details.username}
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
+                    {Review.author_details.avatar_path ? (
+                      <img
+                        src={ImgConfig + Review.author_details.avatar_path}
+                        alt={Review.author_details.username}
+                        className="w-8 h-8 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="center-flex">
+                        <img
+                          src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0"
+                          className="h-8 w-8 rounded-full object-cover"
+                          alt="guest-img"
+                        />
+                      </div>
+                    )}
                     <div className="name">
                       <h2>@{Review.author}</h2>
                     </div>
                   </div>
+
                   <hr className="bg-gray-600 my-4 h-[1px] border-0" />
 
                   <p className=" leading-9 text-white/70 ">
@@ -190,6 +209,7 @@ const MovieDetails = () => {
                 there is no reviews to show here
               </div>
             )}
+
             {ReviewsCount < Reviews.length && (
               <button
                 className="block bg-gradient-to-r from-cyan-600 w-fit to-cyan-950 mt-4 p-2  text-white rounded-md font-bold capitalize"
@@ -201,6 +221,7 @@ const MovieDetails = () => {
           </div>
 
           {/* similarmovies */}
+
           {Similar.length > 0 && (
             <div className="similarmovies container">
               <h1 className="font-bold text-white text-3xl my-8 capitalize">
