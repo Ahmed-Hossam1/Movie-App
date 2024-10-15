@@ -15,7 +15,7 @@ const Hero = () => {
     try {
       const MovieUrl = "https://api.themoviedb.org/3/discover/movie";
       const response = await axios.get(
-        `${MovieUrl}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`
+        `${MovieUrl}?api_key=49b7cb7e387bfe1c056d28f7e499039f`
       );
       setMovies(response.data.results);
     } catch (error) {
