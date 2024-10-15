@@ -6,7 +6,6 @@ const PopularTvShows = () => {
   const [PopularMovie, SetPopularMovie] = useState([]);
 
   const GetPopularMovie = async () => {
-    const Api_Key = process.env.REACT_APP_API_KEY
 
     try {
       const page = 5;

@@ -7,7 +7,6 @@ const UpComing = () => {
   const [UpComing, SetUpComing] = useState([]);
 
   const GetUpComingMovie = async () => {
-    const Api_Key = process.env.REACT_APP_API_KEY
 
     try {
       const NowPlayingMovieUrl = "https://api.themoviedb.org/3/movie/upcoming";
