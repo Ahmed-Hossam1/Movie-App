@@ -15,7 +15,6 @@ import Movies from "./pages/MoviesPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 
-require("dotenv").config();
 function App() {
   return (
     <div className="App bg-black">
