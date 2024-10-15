@@ -8,28 +8,25 @@ import Trending from "../components/Trending/Trending";
 import UpComing from "../components/UpComing/UpComing";
 import { ProviderMovieContext } from "../context/MovieContext";
 const Home = () => {
-  const { isloading , Setloading} = useContext(ProviderMovieContext)
-  useEffect(()=> {
-    setTimeout(Setloading, 3000 )
-  })
+  const { isloading, Setloading } = useContext(ProviderMovieContext);
+  useEffect(() => {
+    setTimeout(Setloading, 3000);
+  });
   return (
     <>
-     {
-       isloading ? <Loader />
-      : (
-        
+      {isloading ? (
+        <Loader />
+      ) : (
         <>
-        <Hero />
-        <Trending />
-        <NowPlaying />
-        <TopRated />
-        <PopularTvShows />
-        <UpComing />
+          <Hero />
+          <Trending />
+          <NowPlaying />
+          <TopRated />
+          <PopularTvShows />
+          <UpComing />
         </>
-      )
-  }
-  </>
-
+      )}
+    </>
   );
 };
 

@@ -56,7 +56,7 @@ const MovieDetails = () => {
     };
     fetchMovieDetails();
   }, [movieID, Setloading]);
-  
+
   GetVideo(movieID);
   return (
     <section id="moviedetails">
@@ -81,7 +81,7 @@ const MovieDetails = () => {
           <div className="container relative  md:flex justify-between gap-5 text-white">
             <div className="img -mt-28">
               <img
-                src={ImgConfig + Movie.backdrop_path}
+                src={`${ImgConfig}${Movie.poster_path? Movie.poster_path : Movie.backdrop_path}`}
                 alt={Movie.title}
                 className="  bottom-1/4  md:max-w-[400px] h-[550px] object-cover rounded-xl "
               />
@@ -136,19 +136,23 @@ const MovieDetails = () => {
               </span>
 
               {/* cast */}
+
               <div className="castprofile flex flex-wrap gap-5 my-5">
-                {Cast.map((el) => (
-                  <div key={el.id}>
-                    <Link to={`../persondetails/${el.id}`}>
-                      <img
-                        src={ImgConfig + el.profile_path}
-                        alt={el.name}
-                        className="w-20 h-20 object-cover rounded-full hover:scale-110 hover:brightness-50 transition duration-150 cursor-pointer"
-                      />
-                    </Link>
-                    <h2 className="text-center">{el.name.slice(0, 5)}</h2>
-                  </div>
-                ))}
+                {Cast.map(
+                  (el) =>
+                    el.profile_path && (
+                      <div key={el.id}>
+                        <Link to={`../persondetails/${el.id}`}>
+                          <img
+                            src={ImgConfig + el.profile_path}
+                            alt={el.name}
+                            className="w-20 h-20 object-cover rounded-full hover:scale-110 hover:brightness-50 transition duration-150 cursor-pointer"
+                          />
+                        </Link>
+                        <h2 className="text-center">{el.name.slice(0, 5)}</h2>
+                      </div>
+                    )
+                )}
               </div>
             </div>
           </div>
@@ -197,26 +201,29 @@ const MovieDetails = () => {
           </div>
 
           {/* similarmovies */}
-          <div className="similarmovies container">
-            <h1 className="font-bold text-white text-3xl my-8 capitalize">
-              similar movie
-            </h1>
-
-            <SwiperProvider data={Similar} navigation={true}>
-              <MoviesCard />
-            </SwiperProvider>
-          </div>
+          {Similar.length > 0 && (
+            <div className="similarmovies container">
+              <h1 className="font-bold text-white text-3xl my-8 capitalize">
+                similar movie
+              </h1>
+              <SwiperProvider data={Similar} navigation={true}>
+                <MoviesCard />
+              </SwiperProvider>
+            </div>
+          )}
 
           {/* recommendationmovies */}
-          <div className="recommendationmovies container">
-            <h1 className="font-bold text-white text-3xl my-8 capitalize">
-              recommendation movie
-            </h1>
+          {Recommendations.length > 0 && (
+            <div className="recommendationmovies container">
+              <h1 className="font-bold text-white text-3xl my-8 capitalize">
+                recommendation movie
+              </h1>
 
-            <SwiperProvider data={Recommendations} navigation={true}>
-              <MoviesCard />
-            </SwiperProvider>
-          </div>
+              <SwiperProvider data={Recommendations} navigation={true}>
+                <MoviesCard />
+              </SwiperProvider>
+            </div>
+          )}
         </>
       )}
     </section>

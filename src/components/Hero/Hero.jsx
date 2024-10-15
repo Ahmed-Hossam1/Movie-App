@@ -44,7 +44,7 @@ const Hero = () => {
       <div className="heroslide h-full">
         <div className="img h-full">
           <img
-            src={ImgConfig + movie.backdrop_path}
+            src={`${ImgConfig}${ movie.backdrop_path ? movie.backdrop_path : movie.poster_path} `}
             alt={movie.title}
             className="h-full w-full object-cover bg-fixed bg-center bg-cover"
           />

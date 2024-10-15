@@ -8,7 +8,7 @@ const TvSeriesCard = ({ data }) => {
       <div className="tvseries  relative cursor-pointer">
         <div className="img">
           <img
-            src={`${ImgConfig}${data.backdrop_path}`}
+            src={`${ImgConfig}${data.backdrop_path ? data.backdrop_path : data.poster_path}`}
             alt={data.name}
             className="h-[400px] object-cover"
             loading="lazy"
