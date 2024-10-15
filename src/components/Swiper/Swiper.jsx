@@ -28,7 +28,7 @@ const SwiperProvider = ({
           slidesPerView: 5,
         },
       }}
-      spaceBetween={50}
+      spaceBetween={15}
       slidesPerView={slidesPerView ? slidesPerView : 2}
       navigation={navigation ? navigation : false}
       pagination={pagination ? pagination : false}
