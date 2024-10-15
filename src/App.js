@@ -14,6 +14,7 @@ import TvDetails from "./pages/TvDetails";
 import Movies from "./pages/MoviesPage.jsx"
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
+
 function App() {
 
   return (
