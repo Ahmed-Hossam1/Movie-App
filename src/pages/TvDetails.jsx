@@ -41,11 +41,11 @@ const TvDetails = () => {
   useEffect(() => {
     const fetchTvSeries = async () => {
       const Urls = [
-        `https://api.themoviedb.org/3/tv/${TvID}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-        `https://api.themoviedb.org/3/tv/${TvID}/reviews?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-        `https://api.themoviedb.org/3/tv/${TvID}/credits?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-        `https://api.themoviedb.org/3/tv/${TvID}/similar?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-        `https://api.themoviedb.org/3/tv/${TvID}/recommendations?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
+        `https://api.themoviedb.org/3/tv/${TvID}?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/tv/${TvID}/reviews?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/tv/${TvID}/credits?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/tv/${TvID}/similar?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/tv/${TvID}/recommendations?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
       ];
       Setloading(true);
       try {

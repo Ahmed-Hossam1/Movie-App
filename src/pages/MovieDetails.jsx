@@ -25,40 +25,37 @@ const MovieDetails = () => {
   const [Reviews, SetReviews] = useState([]);
   const [ReviewsCount, SetReviewsCount] = useState(3);
 
-  const fetchMovieDetails = async () => {
-
-    const urls = [
-      `https://api.themoviedb.org/3/movie/${movieID}?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-      `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-      `https://api.themoviedb.org/3/movie/${movieID}/reviews?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-      `https://api.themoviedb.org/3/movie/${movieID}/similar?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-      `https://api.themoviedb.org/3/movie/${movieID}/recommendations?api_key="49b7cb7e387bfe1c056d28f7e499039f"`,
-    ];
-
-    Setloading(true);
-    try {
-      const response = await Promise.all(urls.map((ulr) => axios.get(ulr)));
-      SetMovie(response[0].data);
-      SetCast(response[1].data.cast);
-      SetReviews(response[2].data.results);
-      SetSimilar(response[3].data.results);
-      SetRecommendations(response[4].data.results);
-    } catch (error) {
-      console.error("Error fetching movie details:", error.message);
-    } finally {
-      Setloading(false);
-    }
-  };
-
   // Reviews Appear Number
   const Lastindex = ReviewsCount;
   const Firstindex = Lastindex - Reviews;
   const ReviewsNumber = Reviews.slice(Firstindex, Lastindex);
 
   useEffect(() => {
+    const fetchMovieDetails = async () => {
+      const urls = [
+        `https://api.themoviedb.org/3/movie/${movieID}?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/movie/${movieID}/reviews?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+        `https://api.themoviedb.org/3/movie/${movieID}/recommendations?api_key=49b7cb7e387bfe1c056d28f7e499039f`,
+      ];
+
+      Setloading(true);
+      try {
+        const response = await Promise.all(urls.map((ulr) => axios.get(ulr)));
+        SetMovie(response[0].data);
+        SetCast(response[1].data.cast);
+        SetReviews(response[2].data.results);
+        SetSimilar(response[3].data.results);
+        SetRecommendations(response[4].data.results);
+      } catch (error) {
+        console.error("Error fetching movie details:", error.message);
+      } finally {
+        Setloading(false);
+      }
+    };
     fetchMovieDetails();
-    GetVideo(movieID);
-  });
+  }, [movieID, Setloading]);
 
   return (
     <section id="moviedetails">

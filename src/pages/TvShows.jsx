@@ -29,7 +29,7 @@ const TvShows = () => {
       const Url = `https://api.themoviedb.org/3/tv/top_rated`;
       try {
         const response = await axios.get(
-          `${Url}?api_key="49b7cb7e387bfe1c056d28f7e499039f"&page=${Page}`
+          `${Url}?api_key=49b7cb7e387bfe1c056d28f7e499039f&page=${Page}`
         );
         const data = await response.data.results;
         SetShows((prevShows) => [...prevShows, ...data]);

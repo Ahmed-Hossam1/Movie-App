@@ -29,7 +29,7 @@ const MoviesPage = () => {
 
       try {
         const response = await axios.get(
-          `${Url}?api_key="49b7cb7e387bfe1c056d28f7e499039f"&page=${page}`
+          `${Url}?api_key=49b7cb7e387bfe1c056d28f7e499039f&page=${page}`
         );
         const data = await response.data.results;
         SetMovies((prevMovies) => [...prevMovies, ...data]);
