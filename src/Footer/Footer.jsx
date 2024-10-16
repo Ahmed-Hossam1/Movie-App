@@ -15,7 +15,7 @@ const Footer = () => {
           </p>
         </aside>
         <nav>
-          <h6 className="footer-title">Services</h6>
+          <h6 className="footer-title text-white">Services</h6>
           <a className="link link-hover" href="/">
             Inception
           </a>
@@ -27,7 +27,7 @@ const Footer = () => {
           </a>
         </nav>
         <nav>
-          <h6 className="footer-title">website</h6>
+          <h6 className="footer-title text-white">website</h6>
           <a className="link link-hover" href="/">
             About us
           </a>
@@ -42,7 +42,7 @@ const Footer = () => {
           </a>
         </nav>
         <nav>
-          <h6 className="footer-title">Legal</h6>
+          <h6 className="footer-title text-white">Legal</h6>
           <a className="link link-hover" href="/">
             Terms of use
           </a>
