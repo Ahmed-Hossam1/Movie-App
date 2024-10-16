@@ -27,7 +27,7 @@ const Header = () => {
             <img
               src="./logo.png"
               alt="logo"
-              className="w-[150px] cursor-pointer"
+              className="max-w-[200px] cursor-pointer"
             />
           </Link>
 
