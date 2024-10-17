@@ -25,7 +25,6 @@ const MovieDetails = () => {
   const [Reviews, SetReviews] = useState([]);
   const [ReviewsCount, SetReviewsCount] = useState(3);
 
-
   // Reviews Appear Number
   const Lastindex = ReviewsCount;
   const Firstindex = Lastindex - ReviewsCount;
@@ -57,7 +56,6 @@ const MovieDetails = () => {
     };
     fetchMovieDetails();
   }, [movieID, Setloading]);
-
 
   useEffect(() => {
     GetVideo(movieID);
