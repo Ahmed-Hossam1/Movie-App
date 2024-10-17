@@ -7,11 +7,14 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loader from "../Loader";
 
 const Hero = () => {
   const { ImgConfig } = useContext(ProviderMovieContext);
   const [movies, setMovies] = useState([]);
+  const [isloading, setIsloading] = useState();
   const fetchMovies = async () => {
+    setIsloading(true);
     try {
       const MovieUrl = "https://api.themoviedb.org/3/discover/movie";
       const response = await axios.get(
@@ -20,6 +23,8 @@ const Hero = () => {
       setMovies(response.data.results);
     } catch (error) {
       console.error("Error fetching movies:", error.message);
+    } finally {
+      setIsloading(false);
     }
   };
 
@@ -44,7 +49,9 @@ const Hero = () => {
       <div className="heroslide h-full">
         <div className="img h-full">
           <img
-            src={`${ImgConfig}${ movie.backdrop_path ? movie.backdrop_path : movie.poster_path} `}
+            src={`${ImgConfig}${
+              movie.backdrop_path ? movie.backdrop_path : movie.poster_path
+            } `}
             alt={movie.title}
             className="h-full w-full object-cover bg-fixed bg-center bg-cover"
           />
@@ -76,15 +83,19 @@ const Hero = () => {
 
   return (
     <div className="Hero">
-      <Swiper
-        modules={[Autoplay]}
-        spaceBetween={20}
-        slidesPerView={1}
-        autoplay={true}
-        className="w-full h-[100vh]"
-      >
-        {movieSlides}
-      </Swiper>
+      {isloading ? (
+        <Loader />
+      ) : (
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          autoplay={true}
+          className="w-full h-[100vh]"
+        >
+          {movieSlides}
+        </Swiper>
+      )}
     </div>
   );
 };
