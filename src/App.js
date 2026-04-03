@@ -16,8 +16,14 @@ import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 
 function App() {
+  const des = `my latest project : movies app built with react JS
+movieo app is a modern website built with modern technologies like reactjs, tailwind, Router DOM ,daisyui.
+the user can engaging with the website and see the movie detail, Tv series, search  for secpic movie, see movie review and login or create an account, with fully responsive design `;
+
+
   return (
     <div className="App bg-black">
+      <div className=" capitalize ">{des}</div>
       <MovieContext>
         <Header />
         <Routes>
